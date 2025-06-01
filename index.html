@@ -1,217 +1,110 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FullWhipPlex — Кинотеатр</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FullWhipPlex</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --main-color: #e50914;
-      --background-color: #1c1c1c;
-      --text-color: #f4f4f4;
-      --card-bg: #2a2a2a;
-      --shadow: rgba(0, 0, 0, 0.5);
-    }
-
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: 'Rubik', sans-serif;
       margin: 0;
       padding: 0;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
     }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: url('images/background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: -1;
-    }
-
     header {
-      background: linear-gradient(to right, #000000, #3a3a3a);
-      padding: 30px 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 25px 15px;
       text-align: center;
-      box-shadow: 0 2px 8px var(--shadow);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
-
-    header img {
-      width: 80px;
-      margin-bottom: 10px;
-    }
-
     header h1 {
-      font-family: 'Comfortaa', cursive;
-      font-size: 3.5em;
-      color: var(--main-color);
-      letter-spacing: 2px;
-      margin-bottom: 10px;
+      font-size: 3em;
+      color: #00d9ff;
+      margin: 0;
     }
-
-    header p {
-      color: #ccc;
-      font-size: 1em;
-    }
-
-    .container {
-      padding: 30px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 2.2em;
-      color: var(--main-color);
-      border-bottom: 2px solid var(--main-color);
-      padding-bottom: 10px;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-      font-family: 'Comfortaa', cursive;
-    }
-
-    .movie-grid {
+    .movies {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 40px;
     }
-
     .movie {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .movie:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 18px var(--shadow);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     }
-
     .movie img {
       width: 100%;
-      border-radius: 10px;
-    }
-
-    .movie h3 {
-      margin: 10px 0 5px;
-      font-size: 1.1em;
-      text-align: center;
-      font-family: 'Comfortaa', cursive;
-    }
-
-    .buy-button {
-      background: var(--main-color);
-      color: white;
-      padding: 10px;
-      text-align: center;
-      text-decoration: none;
+      height: auto;
       display: block;
-      margin-top: 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background 0.3s;
     }
-
-    .buy-button:hover {
-      background: #ff2e2e;
+    .movie h2 {
+      font-size: 1.3em;
+      margin: 12px 15px 8px;
     }
-
-    footer {
-      background: #111;
-      color: white;
-      padding: 20px;
+    .buy-button {
+      display: block;
+      margin: 0 15px 15px;
+      background: #00d9ff;
+      color: #000000;
       text-align: center;
-      margin-top: 40px;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.3s ease, color 0.3s ease;
     }
-
-    .contact {
-      margin-top: 10px;
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2em;
-      }
-
-      .container {
-        padding: 20px 10px;
-      }
+    .buy-button:hover {
+      background: #00a7cc;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="images/logo.png" alt="Логотип FullWhipPlex">
     <h1>FullWhipPlex</h1>
-    <p>пр. Космонавтов, 14, Санкт-Петербург, Россия</p>
   </header>
-
-  <div class="container">
-    <h2>Афиша</h2>
-    <div class="movie-grid">
-
-      <div class="movie">
-        <img src="images/thunderbolts.jpg" alt="Громовержцы">
-        <h3>Громовержцы</h3>
-        <a class="buy-button" href="#">Купить билет</a>
-      </div>
-
-      <div class="movie">
-        <img src="images/mission_final_reckoning.jpg" alt="Миссия невыполнима: Последняя расплата">
-        <h3>Миссия невыполнима: Последняя расплата</h3>
-        <a class="buy-button" href="#">Купить билет</a>
-      </div>
-
-      <div class="movie">
-        <img src="images/lilo_stitch.jpg" alt="Лило и Стич">
-        <h3>Лило и Стич</h3>
-        <a class="buy-button" href="#">Купить билет</a>
-      </div>
-
-      <div class="movie">
-        <img src="images/final_destination_bloodlines.jpg" alt="Пункт назначения: Родословная">
-        <h3>Пункт назначения: Родословная</h3>
-        <a class="buy-button" href="#">Купить билет</a>
-      </div>
-
-      <div class="movie">
-        <img src="images/jurassic_world_rebirth.jpg" alt="Мир Юрского периода: Возрождение">
-        <h3>Мир Юрского периода: Возрождение</h3>
-        <a class="buy-button" href="#">Купить билет</a>
-      </div>
-
-      <div class="movie">
-        <img src="images/happy_gilmore_2.jpg" alt="Счастливчик Гилмор 2">
-        <h3>Счастливчик Гилмор 2</h3>
-        <a class="buy-button" href="#">Купить билет</a>
-      </div>
-
+  <section class="movies">
+    <div class="movie">
+      <img src="images/final_destination_bloodlines.jpg" alt="Пункт назначения: Родословная">
+      <h2>Пункт назначения: Родословная</h2>
+      <a href="https://buy.stripe.com/test_5kQ3cxgDl3Fv89A69x7wA01" target="_blank" class="buy-button">Купить билет</a>
     </div>
-  </div>
-
-  <footer>
-    <p>Связь: <a href="mailto:fullwhipplex@gmail.com" style="color: #fff; text-decoration: underline;">fullwhipplex@gmail.com</a></p>
-    <p class="contact">Телеграм: <a href="https://t.me/fullwhipplex" style="color: #fff; text-decoration: underline;">@fullwhipplex</a></p>
-  </footer>
-
-  <!-- Вставка виджета Telegram -->
-  <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="fullwhipplex" data-size="large" data-radius="10" data-auth-url="#" data-request-access="write"></script>
+    <div class="movie">
+      <img src="images/happy_gilmore_2.jpg" alt="Счастливчик Гилмор 2">
+      <h2>Счастливчик Гилмор 2</h2>
+      <a href="https://buy.stripe.com/test_5kQ3cxgDl3Fv89A69x7wA01" target="_blank" class="buy-button">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/jurassic_world_rebirth.jpg" alt="Мир Юрского периода: Возрождение">
+      <h2>Мир Юрского периода: Возрождение</h2>
+      <a href="https://buy.stripe.com/test_5kQ3cxgDl3Fv89A69x7wA01" target="_blank" class="buy-button">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/lilo_stitch.jpg" alt="Лило и Стич">
+      <h2>Лило и Стич</h2>
+      <a href="https://buy.stripe.com/test_5kQ3cxgDl3Fv89A69x7wA01" target="_blank" class="buy-button">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/mission_final_reckoning.jpg" alt="Миссия невыполнима: Последняя расплата (Часть 2)">
+      <h2>Миссия невыполнима: Последняя расплата (Часть 2)</h2>
+      <a href="https://buy.stripe.com/test_5kQ3cxgDl3Fv89A69x7wA01" target="_blank" class="buy-button">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/thunderbolts.jpg" alt="Громовержцы">
+      <h2>Громовержцы</h2>
+      <a href="https://buy.stripe.com/test_5kQ3cxgDl3Fv89A69x7wA01" target="_blank" class="buy-button">Купить билет</a>
+    </div>
+  </section>
 </body>
 </html>
+
 
