@@ -3,15 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Оплата билета</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="font-family: sans-serif; text-align: center; padding-top: 100px;">
-  <h1>Оплата билета</h1>
-  <p>Нажмите кнопку ниже для оплаты:</p>
+<body style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #f9f9f9;">
+
+  <h1 style="color: #333;">Оплата билета</h1>
+  <p>Нажмите кнопку ниже, чтобы перейти к безопасной оплате через Stripe.</p>
 
   <a href="https://buy.stripe.com/test_cNi9AVgDlcc175wbtR7wA00" target="_blank">
-    <button style="padding: 12px 24px; font-size: 18px; background-color: #635bff; color: white; border: none; border-radius: 5px;">
+    <button style="
+      padding: 14px 28px;
+      font-size: 18px;
+      background-color: #635bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    " onmouseover="this.style.backgroundColor='#5046d1'" onmouseout="this.style.backgroundColor='#635bff'">
       Перейти к оплате
     </button>
   </a>
+
 </body>
 </html>
+
