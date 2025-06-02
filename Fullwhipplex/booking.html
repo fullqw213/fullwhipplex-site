@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Выбор мест</title>
+  <style>
+    body {
+      background: #1e2a38;
+      font-family: Arial, sans-serif;
+      color: white;
+      padding: 20px;
+    }
+    h1, .session, .footer {
+      text-align: center;
+    }
+    .seats {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      justify-content: center;
+      max-width: 500px;
+      margin: 20px auto;
+    }
+    .seat {
+      width: 30px;
+      height: 30px;
+      background: #00d9ff;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 30px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .seat.selected {
+      background: #00ff88;
+    }
+    .seat.occupied {
+      background: #555;
+      cursor: not-allowed;
+    }
+    .footer {
+      margin-top: 20px;
+    }
+    .pay-button {
+      background: #00d9ff;
+      color: black;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="movieTitle">Фильм</h1>
+
+  <div class="session">
+    <label for="time">Время: </label>
+    <select id="time">
+      <option>10:00</option>
+      <option>13:00</option>
+      <option>16:00</option>
+      <option>19:00</option>
+      <option>22:00</option>
+    </select>
+  </div>
+
+  <div class="seats" id="seatsGrid"></div>
+
+  <div class="footer">
+    <p>Мест выбрано: <span id="count">0</span></p>
+    <p>Итого: <span id="total">0</span> ₽</p>
+    <button class="pay-button" id="payButton">Оплатить</button>
+  </div>
+
+  <script>
+    const movieTitle = decodeURIComponent(new URLSearchParams(window.location.search).get('movie') || 'Фильм');
+    document.getElementById('movieTitle').innerText = `Билеты на фильм: ${movieTitle}`;
+
+    const seatPrice = 450;
+    const seatGrid = document.getElementById('seatsGrid');
+    const countEl = document.getElementById('count');
+    const totalEl = document.getElementById('total');
+    let selectedSeats = [];
+
+    function createSeats() {
+      const rows = 'ABCDEF';
+      const cols = 10;
+      const occupied = [3, 7, 14, 28, 35]; // Пример
+
+      for (let row = 0; row < rows.length; row++) {
+        for (let col = 1; col <= cols; col++) {
+          const seatIndex = row * cols + col;
+          const seat = document.createElement('div');
+          seat.className = 'seat';
+          seat.innerText = `${rows[row]}${col}`;
+          if (occupied.includes(seatIndex)) {
+            seat.classList.add('occupied');
+          } else {
+            seat.onclick = () => {
+              seat.classList.toggle('selected');
+              if (seat.classList.contains('selected')) {
+                selectedSeats.push(`${rows[row]}${col}`);
+              } else {
+                selectedSeats = selectedSeats.filter(s => s !== `${rows[row]}${col}`);
+              }
+              countEl.innerText = selectedSeats.length;
+              totalEl.innerText = selectedSeats.length * seatPrice;
+            };
+          }
+          seatGrid.appendChild(seat);
+        }
+      }
+    }
+
+    createSeats();
+
+    document.getElementById('payButton').onclick = () => {
+      if (selectedSeats.length === 0) {
+        alert('Выберите хотя бы одно место!');
+        return;
+      }
+      // Здесь можно сделать Stripe Checkout с динамической ценой
+      window.open('https://buy.stripe.com/test_5kQ3cxgDl3Fv89A69x7wA01', '_blank');
+    };
+  </script>
+</body>
+</html>

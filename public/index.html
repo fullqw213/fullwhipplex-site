@@ -1,0 +1,21 @@
+<script>
+  document.getElementById('buy-button').addEventListener('click', async () => {
+    const selectedSeats = document.querySelectorAll('.seat.selected');
+    const quantity = selectedSeats.length;
+
+    if (quantity === 0) {
+      alert('Пожалуйста, выберите хотя бы одно место.');
+      return;
+    }
+
+    const res = await fetch('/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ quantity }),
+    });
+
+    const data = await res.json();
+    window.location.href = data.url;
+  });
+</script>
+

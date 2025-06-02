@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Выбор мест</title>
+  <style>
+    .seat {
+      width: 40px;
+      height: 40px;
+      margin: 4px;
+      background-color: #444;
+      border-radius: 5px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .seat.selected {
+      background-color: #00d9ff;
+    }
+  </style>
+</head>
+<body>
+  <h2>Выберите места</h2>
+  <div id="seats">
+    <!-- Генерируем 30 мест -->
+    <script>
+      for (let i = 1; i <= 30; i++) {
+        document.write(`<div class="seat" data-seat="${i}"></div>`);
+        if (i % 10 === 0) document.write('<br/>');
+      }
+    </script>
+  </div>
+  <br>
+  <button id="buy-button">Купить билет</button>
+
+  <script>
+    document.querySelectorAll('.seat').forEach(seat => {
+      seat.addEventListener('click', () => seat.classList.toggle('selected'));
+    });
+
+    document.getElementById('buy-button').addEventListener('click', async () => {
+      const selectedSeats = document.querySelectorAll('.seat.selected');
+      const quantity = selectedSeats.length;
+
+      if (quantity === 0) {
+        alert('Выберите хотя бы одно место.');
+        return;
+      }
+
+      const res = await fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity })
+      });
+
+      const data = await res.json();
+      window.location.href = data.url;
+    });
+  </script>
+</body>
+</html>

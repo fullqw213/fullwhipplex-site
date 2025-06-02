@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FullWhipPlex</title>
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 25px 15px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      color: #00d9ff;
+    }
+    .movies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 40px;
+    }
+    .movie {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      text-align: center;
+      padding-bottom: 10px;
+    }
+    .movie img {
+      width: 100%;
+      height: auto;
+    }
+    .movie h2 {
+      font-size: 1.2em;
+      margin: 12px 15px 8px;
+    }
+    .buy-button {
+      display: inline-block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background: #00d9ff;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    .buy-button:hover {
+      background: #00a7cc;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FullWhipPlex</h1>
+  </header>
+
+  <section class="movies">
+    <div class="movie">
+      <img src="images/final_destination_bloodlines.jpg" alt="Пункт назначения">
+      <h2>Пункт назначения: Родословная</h2>
+      <a class="buy-button" href="booking.html?movie=Пункт%20назначения">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/happy_gilmore_2.jpg" alt="Счастливчик Гилмор 2">
+      <h2>Счастливчик Гилмор 2</h2>
+      <a class="buy-button" href="booking.html?movie=Счастливчик%20Гилмор%202">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/jurassic_world_rebirth.jpg" alt="Мир Юрского периода">
+      <h2>Мир Юрского периода: Возрождение</h2>
+      <a class="buy-button" href="booking.html?movie=Мир%20Юрского%20периода">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/lilo_stitch.jpg" alt="Лило и Стич">
+      <h2>Лило и Стич</h2>
+      <a class="buy-button" href="booking.html?movie=Лило%20и%20Стич">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/mission_final_reckoning.jpg" alt="Миссия невыполнима">
+      <h2>Миссия невыполнима: Последняя расплата</h2>
+      <a class="buy-button" href="booking.html?movie=Миссия%20невыполнима">Купить билет</a>
+    </div>
+    <div class="movie">
+      <img src="images/thunderbolts.jpg" alt="Громовержцы">
+      <h2>Громовержцы</h2>
+      <a class="buy-button" href="booking.html?movie=Громовержцы">Купить билет</a>
+    </div>
+  </section>
+</body>
+</html>
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
